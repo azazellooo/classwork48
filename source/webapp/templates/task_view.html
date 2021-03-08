@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Product{% endblock title %}
+{%  block content %}
+    <div class="jumbotron jumbotron-fluid" style="background-color: #f8f1f1">
+        <div class="container">
+            <a href="{% url "product-list" %}" >вернуться к списку продуктов</a>
+            <h1 class="display-4">{{ product.name }}</h1>
+            <h2>Категория: {{ product.get_category_display }}</h2>
+            <p class="lead">{{ product.description }}</p>
+            <p class="lead">Цена: {{ product.price }}</p>
+{#            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "task-update" task.id %}">Редактировать задачу</a></h4>#}
+{#            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "task-delete" task.id %}">Удалить</a></h4>#}
+        </div>
+    </div>
+{%  endblock content %}

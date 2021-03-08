@@ -14,7 +14,7 @@
             </div>
             {% for product in products %}
                 <div class="d-flex">
-                <div class="p-2 flex-grow-1 border-bottom"> {{ product.name }} </div>
+                <div class="p-2 flex-grow-1 border-bottom"> <a href="{% url 'product-view' product.id %}">{{ product.name }}</a></div>
                 <div class="p-2 border-bottom"> <p class="text-end mr-5">{{ product.price}}</p></div>
                 <div class="p-2 border-bottom ml-2"> {{ product.get_category_display}}</div>
                 </div>
