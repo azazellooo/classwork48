@@ -10,7 +10,7 @@
     <nav class="navbar navbar-light" style="background-color: darkblue;">
       <div class="container-fluid">
       <a class="navbar-brand text-light" href="{% url 'product-list' %}">Все товары</a>
-      <a class="navbar-brand text-light" href="#">Добавить товар</a>
+      <a class="navbar-brand text-light" href="{% url 'product-add' %}">Добавить товар</a>
       </div>
     </nav>
     {% block content %} {% endblock content %}
