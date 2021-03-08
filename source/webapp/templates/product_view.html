@@ -8,7 +8,7 @@
             <h2>Категория: {{ product.get_category_display }}</h2>
             <p class="lead">{{ product.description }}</p>
             <p class="lead">Цена: {{ product.price }}</p>
-{#            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "task-update" task.id %}">Редактировать задачу</a></h4>#}
+            <h4><a class="btn btn-warning btn-m" href="{% url "product-update" product.id %}">Изменить</a></h4>
 {#            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "task-delete" task.id %}">Удалить</a></h4>#}
         </div>
     </div>
