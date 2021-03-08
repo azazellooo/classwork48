@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}all products{% endblock title %}
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1; padding-left: 10%; padding-right: 10%">
+      <h1 class="display-4">Список товаров</h1>
+      <hr class="my-4">
+        {% if not products %}
+            <h3>Товара нет</h3>>
+        {% else %}
+            <div class="d-flex ">
+                <div class="p-2 flex-grow-1 border-bottom"> <h4 class="fw-bold">Наименование</h4> </div>
+                <div class="p-2 border-bottom">  <h3 class="fw-bold">Цена</h3> </div>
+                <div class="p-2 border-bottom">  <h3 class="fw-bold">Категория</h3> </div>
+            </div>
+            {% for product in products %}
+                <div class="d-flex">
+                <div class="p-2 flex-grow-1 border-bottom"> {{ product.name }} </div>
+                <div class="p-2 border-bottom"> <p class="text-end mr-5">{{ product.price}}</p></div>
+                <div class="p-2 border-bottom ml-2"> {{ product.get_category_display}}</div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}
