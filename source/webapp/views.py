@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.models import Product, category_choices
 from webapp.forms import ProductForm
 
 
 def index_view(request):
-    products = Product.objects.order_by('category', 'name')
+    products = Product.objects.order_by('category', 'name').exclude(remainder=0)
     return render(request, 'index.html', context={'products': products})
 
 
@@ -63,5 +64,6 @@ def product_delete_view(request, pk):
     elif request.method == 'POST':
         product.delete()
         return redirect('product-list')
+
 
 # Create your views here.
