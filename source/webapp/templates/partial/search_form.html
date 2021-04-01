@@ -1,0 +1,7 @@
+<form action="" method="GET">
+    {{ search_form.search_value }}
+    <input class="btn-sm btn-warning" type="submit" value="{{ search_form.search_value.label }}">
+    {% for error in search_form.search_value.errors %}
+        <p style="color: red">{{ error }}</p>
+    {% endfor %}
+</form>

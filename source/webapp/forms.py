@@ -10,3 +10,7 @@ class ProductForm(forms.Form):
     category = forms.ChoiceField(choices=category_choices, label='Категория')
     remainder = forms.IntegerField(required=True, min_value=0, label='Остаток')
     price = forms.DecimalField(max_digits=7, decimal_places=2, label='Цена')
+
+
+class SearchForm(forms.Form):
+    search_value = forms.CharField(max_length=120, required=False, label='Искать')
