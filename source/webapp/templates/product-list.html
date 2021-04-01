@@ -5,8 +5,9 @@
       <h1 class="display-4">Список товаров</h1>
       <hr class="my-4">
         {% if not products %}
-            <h3>Товара нет</h3>
+            <h3>Нет товаров</h3>
         {% else %}
+            {% include 'partial/search_form.html' %}
             <div class="d-flex ">
                 <div class="p-2 flex-grow-1 border-bottom"> <h4 class="fw-bold">Наименование</h4> </div>
                 <div class="p-2 border-bottom">  <h3 class="fw-bold">Цена</h3> </div>
@@ -19,6 +20,9 @@
                 <div class="p-2 border-bottom ml-2"> {{ product.get_category_display}}</div>
                 </div>
             {% endfor %}
+            <div style="margin-top: 50px">
+                {% include 'partial/pagination.html' %}
+            </div>
         {% endif %}
     </div>
 {% endblock content %}

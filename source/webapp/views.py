@@ -1,13 +1,47 @@
+from urllib.parse import urlencode
+
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.models import Product, category_choices
-from webapp.forms import ProductForm
+from webapp.forms import ProductForm, SearchForm
 
 
-def index_view(request):
-    products = Product.objects.order_by('category', 'name').exclude(remainder=0)
-    return render(request, 'index.html', context={'products': products})
+class ProductListView(ListView):
+    template_name = 'product-list.html'
+    paginate_by = 7
+    paginate_orphans = 2
+    model = Product
+    context_object_name = 'products'
+    ordering = ('category', 'name')
+
+    def get(self, request, **kwargs):
+        self.search_form = SearchForm(request.GET)
+        self.search_value = self.get_search_value()
+        return super().get(request, kwargs)
+
+    def get_search_value(self):
+        if self.search_form.is_valid():
+            return self.search_form.cleaned_data['search_value']
+        return None
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['search_form'] = self.search_form
+
+        if self.search_value:
+            context['query'] = urlencode({'search_value': self.search_value})
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.search_value:
+            queryset = queryset.filter(
+                Q(name__icontains=self.search_value) |
+                Q(description__icontains=self.search_value)
+            )
+        return queryset.exclude(remainder=0)
 
 
 def product_view(request, pk):
