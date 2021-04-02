@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from webapp.models import Product
+from webapp.models import Product, Category
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'category', 'remainder']
+    list_display = ['id', 'name', 'remainder']
     list_filter = ['category', 'price']
     search_fields = ['name']
     fields = ['id', 'name', 'category', 'remainder']
@@ -12,6 +12,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-
+admin.site.register(Category)
 
 # Register your models here.
