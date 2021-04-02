@@ -2,9 +2,10 @@ from urllib.parse import urlencode
 
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from webapp.models import Product, category_choices
+from webapp.models import Product
 from webapp.forms import ProductForm, SearchForm
 
 
@@ -49,22 +50,22 @@ def product_view(request, pk):
     return render(request, 'product_view.html', context={'product': product})
 
 
-def product_create_view(request):
-    if request.method == 'GET':
-        form = ProductForm()
-        return render(request, 'product_create.html', context={'choices': category_choices, 'form': form})
-    elif request.method == 'POST':
-        form = ProductForm(data=request.POST)
-        if form.is_valid():
-            product = Product.objects.create(
-                name=form.cleaned_data.get('name'),
-                description=form.cleaned_data.get('description'),
-                category=form.cleaned_data.get('category'),
-                remainder=form.cleaned_data.get('remainder'),
-                price=form.cleaned_data.get('price')
-            )
-            return redirect('product-view', pk=product.id)
-        return render(request, 'product_create.html', context={'form': form})
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'product_create.html'
+    success_url = reverse_lazy('product-list')
+
+    def form_valid(self, form):
+        categories = form.cleaned_data.pop('category')
+        product = Product()
+        for key, value in form.cleaned_data.items():
+            setattr(product, key, value)
+
+        product.save()
+        product.category.set(categories)
+
+        return super().form_valid(form)
 
 
 def product_update_view(request, pk):

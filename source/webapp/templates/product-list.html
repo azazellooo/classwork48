@@ -8,17 +8,22 @@
             <h3>Нет товаров</h3>
         {% else %}
             {% include 'partial/search_form.html' %}
-            <div class="d-flex ">
-                <div class="p-2 flex-grow-1 border-bottom"> <h4 class="fw-bold">Наименование</h4> </div>
-                <div class="p-2 border-bottom">  <h3 class="fw-bold">Цена</h3> </div>
-                <div class="p-2 border-bottom">  <h3 class="fw-bold">Категория</h3> </div>
-            </div>
             {% for product in products %}
-                <div class="d-flex">
-                <div class="p-2 flex-grow-1 border-bottom"> <a href="{% url 'product-view' product.id %}">{{ product.name }}</a></div>
-                <div class="p-2 border-bottom"> <p class="text-end mr-5">{{ product.price}}</p></div>
-                <div class="p-2 border-bottom ml-2"> {{ product.get_category_display}}</div>
-                </div>
+            <div class="card mt-3" style="width: 18rem;">
+            <div class="card-header">
+            <a href="{% url 'product-view' product.id %}" style="color: olive">{{ product.name }}</a>
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">Цена: {{ product.price}}</h5>
+            <p class="card-text">Категории:
+                {% for category in product.category.all %} {{ category.category }}
+                {% if not forloop.last %},
+                {% endif %}
+                {% endfor %}
+            </p>
+            <a href="#" class="btn btn-primary">В корзину</a>
+            </div>
+            </div>
             {% endfor %}
             <div style="margin-top: 50px">
                 {% include 'partial/pagination.html' %}
