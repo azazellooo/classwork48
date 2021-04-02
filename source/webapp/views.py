@@ -1,7 +1,7 @@
 from urllib.parse import urlencode
 
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -69,28 +69,13 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-def product_update_view(request, pk):
-    product = get_object_or_404(Product, id=pk)
-    if request.method == 'GET':
-        form = ProductForm(initial={
-            'name': product.name,
-            'description': product.description,
-            'category': product.category,
-            'remainder': product.remainder,
-            'price': product.price
-        })
-        return render(request, 'product_update.html', context={'product': product, 'form': form})
-    elif request.method == 'POST':
-        form = ProductForm(data=request.POST)
-        if form.is_valid():
-            product.name = form.cleaned_data.get('name')
-            product.description = form.cleaned_data.get('description')
-            product.category = form.cleaned_data.get('category')
-            product.remainder = form.cleaned_data.get('remainder')
-            product.price = form.cleaned_data.get('price')
-            product.save()
-            return redirect('product-view', pk=product.id)
-        return render(request, 'product_update.html', context={'form': form, 'product': product})
+class ProductUpdateView(UpdateView):
+    template_name = 'product_update.html'
+    form_class = ProductForm
+    model = Product
+
+    def get_success_url(self):
+        return reverse('product-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
 def product_delete_view(request, pk):
