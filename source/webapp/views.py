@@ -45,9 +45,10 @@ class ProductListView(ListView):
         return queryset.exclude(remainder=0)
 
 
-def product_view(request, pk):
-    product = get_object_or_404(Product, id=pk)
-    return render(request, 'product_view.html', context={'product': product})
+class ProductDetailView(DetailView):
+    template_name = 'product_view.html'
+    model = Product
+    context_object_name = 'product'
 
 
 class ProductCreateView(CreateView):
