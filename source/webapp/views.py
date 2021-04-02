@@ -78,13 +78,17 @@ class ProductUpdateView(UpdateView):
         return reverse('product-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
-def product_delete_view(request, pk):
-    product = get_object_or_404(Product, id=pk)
-    if request.method == 'GET':
-        return render(request, 'product_delete.html', context={'product': product})
-    elif request.method == 'POST':
-        product.delete()
-        return redirect('product-list')
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'product_delete.html'
+    success_url = reverse_lazy('product-list')
+# def product_delete_view(request, pk):
+#     product = get_object_or_404(Product, id=pk)
+#     if request.method == 'GET':
+#         return render(request, 'product_delete.html', context={'product': product})
+#     elif request.method == 'POST':
+#         product.delete()
+#         return redirect('product-list')
 
 
 # Create your views here.
