@@ -23,7 +23,8 @@ from webapp.views import (
     ProductUpdateView,
     ProductDeleteView,
     ProductsInCartView,
-    AddProductView
+    AddProductView,
+CartProductDelete
 )
 
 urlpatterns = [
@@ -34,5 +35,6 @@ urlpatterns = [
     path('product/<int:pk>/update', ProductUpdateView.as_view(), name='product-update'),
     path('product/<int:pk>/delete', ProductDeleteView.as_view(), name='product-delete'),
     path('cart/', ProductsInCartView.as_view(), name='cart'),
-    path('cart/add/<int:pk>', AddProductView.as_view(), name='add-cart')
+    path('cart/add/<int:pk>', AddProductView.as_view(), name='add-cart'),
+    path('cart/delete/<int:pk>', CartProductDelete.as_view(), name='cart-product-delete')
 ]

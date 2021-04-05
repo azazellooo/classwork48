@@ -16,7 +16,7 @@
 
       <th scope="row">{{ cart.product.name }}</th>
       <td>{{ cart.quantity }}</td>
-      <td>{{ cart.product.price }}</td>
+        <td>{{ cart.product.price }} <a class="btn btn-primary btn-s" href="{% url 'cart-product-delete' cart.product.id %}">удалить</a></td>
     </tr>
   {% endfor %}
   </tbody>
