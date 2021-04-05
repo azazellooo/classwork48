@@ -33,3 +33,14 @@ class AddProductView(View):
             return
 
         return redirect('product-list')
+
+
+class CartProductDelete(View):
+
+    def get(self, request, **kwargs):
+        cart = ProductInCart.objects.get(id=kwargs.get('pk'))
+        product = cart.product
+        product.remainder += cart.quantity
+        product.save()
+        cart.delete()
+        return redirect('product-list')
