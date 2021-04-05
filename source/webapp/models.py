@@ -36,4 +36,17 @@ class ProductInCart(models.Model):
                                 on_delete=models.CASCADE
                                 )
     quantity = models.PositiveIntegerField(verbose_name='количество')
+
+
+class UserData(models.Model):
+    username = models.CharField(max_length=300, null=False, blank=False)
+    phone_number = models.CharField(max_length=300, null=False, blank=False)
+    address = models.CharField(max_length=300, null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Order(models.Model):
+    product = models.ForeignKey('webapp.Product', related_name='order', on_delete=models.CASCADE, verbose_name='продукт')
+    user_data = models.ForeignKey('webapp.UserData', related_name='users_order', verbose_name="Данные заказчика", on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(verbose_name='количество')
 # Create your models here.
