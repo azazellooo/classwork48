@@ -28,4 +28,12 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+
+class ProductInCart(models.Model):
+    product = models.ForeignKey('webapp.Product',
+                                related_name='product_in_cart',
+                                verbose_name='продукт',
+                                on_delete=models.CASCADE
+                                )
+    quantity = models.PositiveIntegerField(verbose_name='количество')
 # Create your models here.
