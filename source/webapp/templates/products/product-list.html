@@ -21,7 +21,7 @@
                 {% endif %}
                 {% endfor %}
             </p>
-            <a href="#" class="btn btn-primary">В корзину</a>
+            <a href="{% url 'add-cart' product.id %}" class="btn btn-primary">В корзину</a>
             </div>
             </div>
             {% endfor %}
