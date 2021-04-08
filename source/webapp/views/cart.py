@@ -38,7 +38,8 @@ class AddProductView(View):
 class CartProductDelete(View):
 
     def get(self, request, **kwargs):
-        cart = ProductInCart.objects.get(id=kwargs.get('pk'))
+        product = get_object_or_404(Product, pk=kwargs.get('pk'))
+        cart = ProductInCart.objects.get(product__pk=product.pk)
         product = cart.product
         product.remainder += cart.quantity
         product.save()
