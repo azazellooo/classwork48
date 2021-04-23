@@ -16,7 +16,7 @@
         <p class="lead">Остаток: {{ product.remainder }}</p>
             <h4><a class="btn btn-warning btn-m" href="{% url "product-update" product.id %}">Изменить</a></h4>
             <h4><a class="btn btn-danger btn-m" href="{% url "product-delete" product.id %}">Удалить</a></h4>
-        <a href="#" class="btn btn-primary">В корзину</a>
+        <a href="{% url "add-cart" product.id %}" class="btn btn-primary">В корзину</a>
         </div>
     </div>
 {%  endblock content %}

@@ -21,6 +21,7 @@
                 {% endif %}
                 {% endfor %}
             </p>
+            <p class="card-text">Остаток: {{ product.remainder }}</p>
             <a href="{% url 'add-cart' product.id %}" class="btn btn-primary">В корзину</a>
             </div>
             </div>

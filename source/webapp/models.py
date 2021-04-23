@@ -37,6 +37,9 @@ class ProductInCart(models.Model):
                                 )
     quantity = models.PositiveIntegerField(verbose_name='количество')
 
+    def get_total(self):
+        return self.quantity * self.product.price
+
 
 class UserData(models.Model):
     username = models.CharField(max_length=300, null=False, blank=False)
@@ -46,6 +49,16 @@ class UserData(models.Model):
 
 
 class Order(models.Model):
-    product = models.ForeignKey('webapp.Product', related_name='order', on_delete=models.CASCADE, verbose_name='продукт')
-    user_data = models.ForeignKey('webapp.UserData', related_name='users_order', verbose_name="Данные заказчика", on_delete=models.CASCADE)
+    product = models.ForeignKey('webapp.Product',
+                                related_name='order',
+                                on_delete=models.CASCADE,
+                                verbose_name='продукт'
+                                )
+    user_data = models.ForeignKey('webapp.UserData',
+                                  related_name='users_order',
+                                  verbose_name="Данные заказчика",
+                                  on_delete=models.CASCADE
+                                  )
+    quantity = models.PositiveIntegerField(verbose_name='количество')
+
 # Create your models here.

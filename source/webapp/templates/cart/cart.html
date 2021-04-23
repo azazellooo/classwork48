@@ -8,20 +8,31 @@
       <th scope="col">наименование</th>
       <th scope="col">Количество</th>
       <th scope="col">Цена</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">_</th>
     </tr>
   </thead>
   <tbody>
   {% for cart in cart_q %}
-    <tr>
 
-      <th scope="row">{{ cart.product.name }}</th>
-      <td>{{ cart.quantity }}</td>
-        <td>{{ cart.product.price }} <a class="btn btn-primary btn-s" href="{% url 'cart-product-delete' cart.product.id %}">удалить</a></td>
+    <tr>
+        <th scope="row">{{ cart.product.name }}</th>
+        <td>{{ cart.quantity }}</td>
+        <td>{{ cart.product.price }}</td>
+        <td>{{ cart.get_total }}</td>
+        <td><a class="btn btn-primary btn-s" href="{% url 'cart-product-delete' cart.product.id %}">удалить</a></td>
     </tr>
+
   {% endfor %}
   </tbody>
     </table>
     <h4 class="text-right mt-5">Итого: {{ tot }}</h4>
+    <form action="{% url 'order' %}" method="post">
+        {% include 'partial/form.html' %}
+    <div class="col-sm-15" >
+          <input class="btn btn-success" type="submit" value="Заказать"/>
+        </div>
+    </form>
     </div>
 
 {% endblock content %}
