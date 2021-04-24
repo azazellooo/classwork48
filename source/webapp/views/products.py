@@ -20,6 +20,8 @@ class ProductListView(ListView):
     def get(self, request, **kwargs):
         self.search_form = SearchForm(request.GET)
         self.search_value = self.get_search_value()
+        print(request.session)
+        print(request.COOKIES)
         return super().get(request, kwargs)
 
     def get_search_value(self):
@@ -52,14 +54,15 @@ class ProductDetailView(DetailView):
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = ''
+    permission_required = 'add_product'
     model = Product
     form_class = ProductForm
     template_name = 'products/product_create.html'
     success_url = reverse_lazy('product-list')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'change_product'
     template_name = 'products/product_update.html'
     form_class = ProductForm
     model = Product
@@ -68,7 +71,8 @@ class ProductUpdateView(UpdateView):
         return reverse('product-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'delete_product'
     model = Product
     template_name = 'products/product_delete.html'
     success_url = reverse_lazy('product-list')

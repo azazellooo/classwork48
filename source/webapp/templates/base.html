@@ -10,7 +10,9 @@
     <nav class="navbar navbar-light" style="background-color: darkblue;">
       <div class="container-fluid">
       <a class="navbar-brand text-light" href="{% url 'product-list' %}">Все товары</a>
+      {% if perms.webapp.add_product %}
       <a class="navbar-brand text-light" href="{% url 'product-add' %}">Добавить товар</a>
+      {% endif %}
           <a class="navbar-brand text-light" href="{% url 'cart' %}">Корзина</a>
           {% if user.is_authenticated %}
           <a class="navbar-brand text-light" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выход</a>
