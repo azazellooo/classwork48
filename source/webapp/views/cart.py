@@ -69,7 +69,10 @@ class OrderView(View):
             phone_number=request.POST.get('phone_number')
         )
         for pc in products_in_cart:
-            Order.objects.create(quantity=pc.quantity, product=pc.product, user_data=u)
+            order = Order.objects.create(quantity=pc.quantity, product=pc.product, user_data=u)
+            if request.user.is_authenticated:
+                order.user_object = request.user
+                order.save()
             pc.delete()
         del request.session['cart']
         return redirect('product-list')

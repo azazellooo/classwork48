@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 
 class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -60,5 +60,13 @@ class Order(models.Model):
                                   on_delete=models.CASCADE
                                   )
     quantity = models.PositiveIntegerField(verbose_name='количество')
+    user_object = models.ForeignKey(
+                                    get_user_model(),
+                                    related_name='order',
+                                    on_delete=models.CASCADE,
+                                    verbose_name='Пользователь',
+                                    null=True,
+                                    blank=True
+                                    )
 
 # Create your models here.
