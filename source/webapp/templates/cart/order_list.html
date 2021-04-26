@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}orders{% endblock title %}
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>Ваши заказы</h1>
+        {% if not orders %}
+    <h4>Заказов нет</h4>
+        {% else %}
+            {% for order in orders %}
+                <div class="alert alert-primary" role="alert">
+                <p>Дата заказа: {{ order.user_data.created_at }}</p>
+                    <p>Наименование: {{ order.product.name }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

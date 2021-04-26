@@ -7,7 +7,7 @@ from webapp.views.products import (
     ProductUpdateView,
     ProductDeleteView,
 )
-from webapp.views.cart import ProductsInCartView, AddProductView, CartProductDelete, OrderView
+from webapp.views.cart import ProductsInCartView, AddProductView, CartProductDelete, OrderView, OrderListView
 
 urlpatterns = [
     path('', ProductListView.as_view(), name='product-list'),
@@ -18,5 +18,6 @@ urlpatterns = [
     path('cart/', ProductsInCartView.as_view(), name='cart'),
     path('cart/add/<int:pk>', AddProductView.as_view(), name='add-cart'),
     path('cart/delete/<int:pk>', CartProductDelete.as_view(), name='cart-product-delete'),
-    path('order/', OrderView.as_view(), name='order')
+    path('order/', OrderView.as_view(), name='order'),
+    path('order-list/', OrderListView.as_view(), name='order-list')
 ]
