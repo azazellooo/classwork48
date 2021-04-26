@@ -20,8 +20,6 @@ class ProductListView(ListView):
     def get(self, request, **kwargs):
         self.search_form = SearchForm(request.GET)
         self.search_value = self.get_search_value()
-        print(request.session)
-        print(request.COOKIES)
         return super().get(request, kwargs)
 
     def get_search_value(self):
