@@ -1,0 +1,357 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "laptop 1",
+    "description": "thi is laptop 1",
+    "remainder": 12,
+    "price": "9999.07",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "laptop asus",
+    "description": "",
+    "remainder": 111,
+    "price": "8888.01",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "tablet",
+    "description": "this is tablet by samsung",
+    "remainder": 6,
+    "price": "888.00",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 5,
+  "fields": {
+    "name": "product",
+    "description": "какой-то товар",
+    "remainder": 9,
+    "price": "3333.00",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 6,
+  "fields": {
+    "name": "hp laptop",
+    "description": "",
+    "remainder": 7,
+    "price": "75874.00",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 7,
+  "fields": {
+    "name": "ultrabook",
+    "description": "this is lenovo ultrabook",
+    "remainder": 22,
+    "price": "33333.00",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 8,
+  "fields": {
+    "name": "iphone case",
+    "description": "This is pretty-cute case for iphone 11 with uncorn print",
+    "remainder": 10,
+    "price": "111.00",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 9,
+  "fields": {
+    "name": "iphone case 2",
+    "description": "",
+    "remainder": 0,
+    "price": "8989.00",
+    "category": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 10,
+  "fields": {
+    "name": "Чехол с едонорожками!!",
+    "description": "для телефонов",
+    "remainder": 122,
+    "price": "12.00",
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 11,
+  "fields": {
+    "name": "macbook pro",
+    "description": "macbook",
+    "remainder": 67,
+    "price": "987.00",
+    "category": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 12,
+  "fields": {
+    "name": "macbook air",
+    "description": "mavbook air",
+    "remainder": 78,
+    "price": "987.00",
+    "category": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 1,
+  "fields": {
+    "category": "other"
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 2,
+  "fields": {
+    "category": "phones"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 1,
+  "fields": {
+    "username": "manager",
+    "phone_number": "7978",
+    "address": "address",
+    "created_at": "2021-04-26T09:22:02.617Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 2,
+  "fields": {
+    "username": "anon",
+    "phone_number": "7978",
+    "address": "address",
+    "created_at": "2021-04-26T09:26:24.673Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 3,
+  "fields": {
+    "username": "anon",
+    "phone_number": "7978",
+    "address": "address",
+    "created_at": "2021-04-26T09:28:56.163Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 4,
+  "fields": {
+    "username": "user",
+    "phone_number": "45654",
+    "address": "address",
+    "created_at": "2021-04-26T09:29:53.428Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 5,
+  "fields": {
+    "username": "user",
+    "phone_number": "45654",
+    "address": "address",
+    "created_at": "2021-04-26T09:31:11.876Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 6,
+  "fields": {
+    "username": "moderator",
+    "phone_number": "345345",
+    "address": "address",
+    "created_at": "2021-04-26T09:32:31.244Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 7,
+  "fields": {
+    "username": "moderator",
+    "phone_number": "345345",
+    "address": "address",
+    "created_at": "2021-04-26T10:16:02.472Z"
+  }
+},
+{
+  "model": "webapp.userdata",
+  "pk": 8,
+  "fields": {
+    "username": "moderator",
+    "phone_number": "45654",
+    "address": "address",
+    "created_at": "2021-04-26T10:21:29.183Z"
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 1,
+  "fields": {
+    "product": 6,
+    "user_data": 2,
+    "quantity": 1,
+    "user_object": null
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 2,
+  "fields": {
+    "product": 6,
+    "user_data": 3,
+    "quantity": 1,
+    "user_object": null
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 3,
+  "fields": {
+    "product": 6,
+    "user_data": 3,
+    "quantity": 1,
+    "user_object": null
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 4,
+  "fields": {
+    "product": 6,
+    "user_data": 4,
+    "quantity": 1,
+    "user_object": null
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 5,
+  "fields": {
+    "product": 6,
+    "user_data": 4,
+    "quantity": 1,
+    "user_object": null
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 6,
+  "fields": {
+    "product": 8,
+    "user_data": 5,
+    "quantity": 1,
+    "user_object": 1
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 7,
+  "fields": {
+    "product": 3,
+    "user_data": 6,
+    "quantity": 1,
+    "user_object": 4
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 8,
+  "fields": {
+    "product": 8,
+    "user_data": 6,
+    "quantity": 1,
+    "user_object": 4
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 9,
+  "fields": {
+    "product": 7,
+    "user_data": 6,
+    "quantity": 1,
+    "user_object": 4
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 10,
+  "fields": {
+    "product": 2,
+    "user_data": 7,
+    "quantity": 1,
+    "user_object": 4
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 11,
+  "fields": {
+    "product": 10,
+    "user_data": 8,
+    "quantity": 1,
+    "user_object": 4
+  }
+}
+]
