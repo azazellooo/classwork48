@@ -10,6 +10,9 @@
                 <div class="alert alert-primary" role="alert">
                 <p>Дата заказа: {{ order.user_data.created_at }}</p>
                     <p>Наименование: {{ order.product.name }}</p>
+                    <p>Количество: {{ order.quantity }}</p>
+                    <p>Цена: {{ order.product.price }}</p>
+                    <p></p>
                 </div>
             {% endfor %}
         {% endif %}
