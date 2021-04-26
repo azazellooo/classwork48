@@ -1,4 +1,5 @@
-from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import View, ListView
 from django.shortcuts import render, get_object_or_404, redirect
 
 from webapp.models import ProductInCart, Product, Order, UserData
@@ -76,3 +77,13 @@ class OrderView(View):
             pc.delete()
         del request.session['cart']
         return redirect('product-list')
+
+
+class OrderListView(LoginRequiredMixin, ListView):
+    template_name = 'cart/order_list.html'
+    model = Order
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        queryset = super(OrderListView, self).get_queryset()
+        return queryset.filter(user_object=self.request.user)

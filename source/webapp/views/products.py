@@ -52,7 +52,7 @@ class ProductDetailView(DetailView):
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
-    permission_required = 'add_product'
+    permission_required = 'webapp.add_product'
     model = Product
     form_class = ProductForm
     template_name = 'products/product_create.html'
@@ -60,7 +60,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 
 
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'change_product'
+    permission_required = 'webapp.change_product'
     template_name = 'products/product_update.html'
     form_class = ProductForm
     model = Product
@@ -70,7 +70,7 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class ProductDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'delete_product'
+    permission_required = 'webapp.delete_product'
     model = Product
     template_name = 'products/product_delete.html'
     success_url = reverse_lazy('product-list')
