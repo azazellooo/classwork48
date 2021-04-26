@@ -123,3 +123,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'product-list'
 LOGOUT_REDIRECT_URL = 'product-list'
+
+LOGIN_URL = 'product-list'
