@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+
 class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(max_length=2000, null=False, blank=True)
@@ -46,6 +47,20 @@ class UserData(models.Model):
     phone_number = models.CharField(max_length=300, null=False, blank=False)
     address = models.CharField(max_length=300, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    user_object = models.ForeignKey(
+                                    get_user_model(),
+                                    related_name='order',
+                                    on_delete=models.CASCADE,
+                                    verbose_name='Пользователь',
+                                    null=True,
+                                    blank=True
+                                    )
+
+    def get_tot(self):
+        tot = 0
+        for i in self.users_order.all():
+            tot += i.get_sum()
+        return tot
 
 
 class Order(models.Model):
@@ -60,13 +75,8 @@ class Order(models.Model):
                                   on_delete=models.CASCADE
                                   )
     quantity = models.PositiveIntegerField(verbose_name='количество')
-    user_object = models.ForeignKey(
-                                    get_user_model(),
-                                    related_name='order',
-                                    on_delete=models.CASCADE,
-                                    verbose_name='Пользователь',
-                                    null=True,
-                                    blank=True
-                                    )
+
+    def get_sum(self):
+        return self.quantity * self.product.price
 
 # Create your models here.

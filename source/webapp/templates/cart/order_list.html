@@ -7,12 +7,16 @@
     <h4>Заказов нет</h4>
         {% else %}
             {% for order in orders %}
-                <div class="alert alert-primary" role="alert">
-                <p>Дата заказа: {{ order.user_data.created_at }}</p>
-                    <p>Наименование: {{ order.product.name }}</p>
-                    <p>Количество: {{ order.quantity }}</p>
-                    <p>Цена: {{ order.product.price }}</p>
-                    <p></p>
+                <div class="alert alert-secondary" role="alert">
+                <p>Дата заказа: {{ order.created_at }}</p>
+                    {% for order_product in order.users_order.all %}
+                        <div class="alert alert-primary">
+                        <p>Наименование: {{ order_product.product.name }}</p>
+                        <p>Количество: {{ order_product.quantity }}</p>
+                        <p>Сумма: {{ order_product.get_sum }}</p>
+                        </div>
+                    {% endfor %}
+                <p>Итого: {{ order.get_tot }}</p>
                 </div>
             {% endfor %}
         {% endif %}

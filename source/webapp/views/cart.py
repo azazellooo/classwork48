@@ -62,28 +62,33 @@ class CartProductDelete(View):
 class OrderView(View):
 
     def post(self, request, *args, **kwargs):
-        products_in_cart = ProductInCart.objects.all()
+        session = request.session.get('pk', [])
+        products_in_cart = ProductInCart.objects.filter(pk__in=session)
 
         u = UserData.objects.create(
             username=request.POST.get('username'),
             address=request.POST.get('address'),
             phone_number=request.POST.get('phone_number')
         )
+        if request.user.is_authenticated:
+            u.user_object = request.user
+            u.save()
         for pc in products_in_cart:
-            order = Order.objects.create(quantity=pc.quantity, product=pc.product, user_data=u)
-            if request.user.is_authenticated:
-                order.user_object = request.user
-                order.save()
+            Order.objects.create(quantity=pc.quantity, product=pc.product, user_data=u)
+
             pc.delete()
+        if len(products_in_cart) <= 0:
+            return redirect('cart')
         del request.session['cart']
         return redirect('product-list')
 
 
 class OrderListView(LoginRequiredMixin, ListView):
     template_name = 'cart/order_list.html'
-    model = Order
+    model = UserData
     context_object_name = 'orders'
 
     def get_queryset(self):
         queryset = super(OrderListView, self).get_queryset()
-        return queryset.filter(user_object=self.request.user)
+        queryset = queryset.filter(user_object=self.request.user)
+        return queryset
