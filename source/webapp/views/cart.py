@@ -64,7 +64,8 @@ class OrderView(View):
     def post(self, request, *args, **kwargs):
         session = request.session.get('pk', [])
         products_in_cart = ProductInCart.objects.filter(pk__in=session)
-
+        if len(products_in_cart) <= 0:
+            return redirect('cart')
         u = UserData.objects.create(
             username=request.POST.get('username'),
             address=request.POST.get('address'),
@@ -77,8 +78,6 @@ class OrderView(View):
             Order.objects.create(quantity=pc.quantity, product=pc.product, user_data=u)
 
             pc.delete()
-        if len(products_in_cart) <= 0:
-            return redirect('cart')
         del request.session['cart']
         return redirect('product-list')
 
