@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Lib apps
-    'rest_framework'
+    'rest_framework',
     
     # Custom apps
     'webapp',
