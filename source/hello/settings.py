@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Lib apps
     'rest_framework',
+    'rest_framework.authtoken',
     
     # Custom apps
     'webapp',
@@ -131,3 +132,9 @@ LOGIN_REDIRECT_URL = 'product-list'
 LOGOUT_REDIRECT_URL = 'product-list'
 
 LOGIN_URL = 'product-list'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
