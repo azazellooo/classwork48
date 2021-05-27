@@ -9,5 +9,5 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'category', )
         read_only_fields = ('id', )
 
-    def to_representation(self, instance):
-        return instance.category
+    # def to_representation(self, instance):
+    #     return instance.category
